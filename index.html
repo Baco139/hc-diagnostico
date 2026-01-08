@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Diagnóstico 360 - Relaciones Laborales 360</title>
+
+  <!-- Typography (safe CDN). If you prefer offline-only, I can inline a fallback-only version. -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      /* Brand */
+      --ink: #0B1F3A;          /* deep navy */
+      --ink-2:#16355E;
+      --accent:#F97316;       /* orange */
+      --accent-2:#EF4444;     /* red */
+      --ok:#10B981;           /* green */
+      --info:#38BDF8;         /* sky */
+
+      /* Neutrals */
+      --bg: #0B1220;
+      --surface: #FFFFFF;
+      --muted: #F3F4F6;
+      --muted-2:#E5E7EB;
+      --text:#0F172A;
+      --sub:#334155;
+      --line: rgba(15,23,42,.10);
+
+      /* Effects */
+      --shadow: 0 18px 60px rgba(2, 6, 23, .22);
+      --shadow-soft: 0 10px 30px rgba(2, 6, 23, .12);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 12px;
+
+      --container: 980px;
+      --pad: 28px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 15% 15%, rgba(56,189,248,.18), transparent 60%),
+        radial-gradient(900px 500px at 85% 10%, rgba(249,115,22,.22), transparent 60%),
+        linear-gradient(180deg, #0B1220 0%, #0A1630 45%, #070B14 100%);
+      padding: 28px 18px 40px;
+    }
+
+    a{ color: inherit; }
+
+    .wrap{
+      max-width: var(--container);
+      margin: 0 auto;
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    /* Header */
+    .hero{
+      position: relative;
+      padding: 44px var(--pad) 34px;
+      color: #fff;
+      background:
+        radial-gradient(800px 420px at 15% 10%, rgba(56,189,248,.45), transparent 55%),
+        radial-gradient(900px 460px at 85% 15%, rgba(249,115,22,.55), transparent 62%),
+        linear-gradient(135deg, #071733 0%, #0B2A57 45%, #071733 100%);
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(180deg, rgba(0,0,0,.10) 0%, rgba(0,0,0,.25) 100%);
+      pointer-events:none;
+    }
+    .hero-inner{
+      position:relative;
+      z-index:1;
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+      align-items:center;
+      text-align:center;
+    }
+    .brand{
+      display:flex;
+      flex-direction:row;
+      gap: 14px;
+      align-items:center;
+      justify-content:center;
+      text-align:left;
+    }
+    .brand-logo{
+      height: 44px;
+      width: auto;
+      display:block;
+      filter: drop-shadow(0 6px 18px rgba(15,23,42,.15));
+    }
+    .brand-text{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      align-items:flex-start;
+    }
+    .brand-badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 8px 26px rgba(0,0,0,.18);
+      font-weight: 700;
+      letter-spacing:.06em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .tagline{
+      font-weight: 600;
+      color: rgba(255,255,255,.85);
+      font-size: 14px;
+    }
+
+    .title{
+      margin-top: 4px;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+    .subtitle{
+      max-width: 720px;
+      font-size: 16px;
+      color: rgba(255,255,255,.90);
+      line-height: 1.6;
+    }
+    .highlight{
+      color: #fff;
+      font-weight: 800;
+      display:inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(249,115,22,.22);
+      border: 1px solid rgba(249,115,22,.35);
+    }
+
+    /* Sections */
+    .section{
+      padding: 26px var(--pad);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+
+    .card{
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px;
+    }
+
+    .intro-card h2{
+      margin:0 0 8px 0;
+      font-size: 18px;
+      color: var(--ink);
+      letter-spacing:-.01em;
+    }
+    .intro-card p{
+      margin:0;
+      color: var(--sub);
+      line-height:1.65;
+      font-size: 14.5px;
+    }
+
+    .steps{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .step{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+    }
+    .dot{
+      width:28px;
+      height:28px;
+      border-radius:10px;
+      display:grid;
+      place-items:center;
+      background: rgba(56,189,248,.18);
+      border: 1px solid rgba(56,189,248,.35);
+      color: #075985;
+      font-weight:800;
+      flex: 0 0 auto;
+    }
+    .step b{ color: var(--ink); }
+    .step span{
+      color: var(--sub);
+      font-size: 13.5px;
+      line-height:1.55;
+      display:block;
+      margin-top:2px;
+    }
+
+    /* Progress */
+    .progress{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-top: 14px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(2,6,23,.06);
+      border: 1px solid rgba(2,6,23,.08);
+    }
+    .progress-left{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      min-width: 140px;
+    }
+    .progress-left small{
+      color: rgba(15,23,42,.70);
+      font-weight:600;
+    }
+    .progress-left strong{
+      color: var(--ink);
+      font-weight:800;
+    }
+    .bar{
+      width:100%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(15,23,42,.10);
+      overflow:hidden;
+    }
+    .bar > i{
+      display:block;
+      height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(56,189,248,.95), rgba(249,115,22,.95));
+      border-radius: 999px;
+      transition: width .25s ease;
+    }
+
+    /* --- FIX: Progreso legible en el hero --- */
+    .hero .progress{
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 12px 28px rgba(0,0,0,.18);
+    }
+    .hero .progress-left small{
+      color: rgba(255,255,255,.82);
+    }
+    .hero .progress-left strong{
+      color: #ffffff;
+    }
+    .hero .bar{
+      background: rgba(255,255,255,.22);
+    }
+    .hero .bar > i{
+      filter: saturate(1.05) brightness(1.05);
+    }
+
+    /* Questions */
+    .q-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 0 var(--pad) 0;
+      margin-top: 6px;
+    }
+    .q-head h2{
+      margin:0;
+      font-size: 18px;
+      color: var(--ink);
+      letter-spacing:-.01em;
+    }
+    .q-head p{
+      margin:0;
+      color: rgba(51,65,85,.85);
+      font-size: 13.5px;
+    }
+
+    .questions{
+      padding: 16px var(--pad) 6px;
+      display:grid;
+      gap: 14px;
+    }
+
+    .q{
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px 16px;
+      box-shadow: 0 10px 26px rgba(2, 6, 23, .08);
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+    .q:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 14px 32px rgba(2, 6, 23, .12);
+      border-color: rgba(56,189,248,.35);
+    }
+    .q.answered{
+      border-color: rgba(16,185,129,.45);
+      box-shadow: 0 14px 34px rgba(16,185,129,.14);
+    }
+    .q-top{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+    }
+    .q-num{
+      width:34px; height:34px;
+      border-radius: 12px;
+      display:grid; place-items:center;
+      font-weight: 800;
+      color: #fff;
+      background: linear-gradient(135deg, rgba(56,189,248,.95), rgba(11,31,58,.95));
+      box-shadow: 0 10px 22px rgba(2,6,23,.22);
+      flex: 0 0 auto;
+    }
+    .q-meta{
+      display:flex;
+      flex-direction:column;
+      gap: 4px;
+      min-width: 0;
+      flex: 1 1 auto;
+    }
+    .q-cat{
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing:.05em;
+      color: rgba(11,31,58,.85);
+    }
+    .q-text{
+      margin:0;
+      font-size: 14.5px;
+      color: var(--sub);
+      line-height: 1.65;
+    }
+
+    .q-actions{
+      margin-top: 12px;
+      display:flex;
+      gap: 10px;
+    }
+
+    .pill{
+      flex: 1;
+      border-radius: 999px;
+      padding: 11px 14px;
+      border: 1px solid rgba(15,23,42,.16);
+      background: rgba(255,255,255,.9);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      font-weight: 800;
+      letter-spacing:.02em;
+      transition: transform .12s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      user-select:none;
+    }
+    .pill:hover{ transform: translateY(-1px); box-shadow: 0 10px 20px rgba(2,6,23,.10); }
+    .pill:active{ transform: translateY(0px); }
+    .pill small{ font-weight:700; opacity:.85; }
+
+    .pill.yes{ border-color: rgba(249,115,22,.35); }
+    .pill.no{ border-color: rgba(51,65,85,.25); }
+
+    .pill.selected-yes{
+      background: rgba(249,115,22,.12);
+      border-color: rgba(249,115,22,.55);
+      box-shadow: 0 10px 24px rgba(249,115,22,.18);
+    }
+    .pill.selected-no{
+      background: rgba(15,23,42,.06);
+      border-color: rgba(51,65,85,.35);
+      box-shadow: 0 10px 24px rgba(2,6,23,.10);
+    }
+
+    /* Results CTA */
+    .sticky{
+      position: sticky;
+      bottom: 14px;
+      z-index: 50;
+      padding: 0 var(--pad) 18px;
+      pointer-events:none;
+    }
+    .sticky-inner{
+      pointer-events:auto;
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+      padding: 12px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(15,23,42,.10);
+      box-shadow: 0 18px 44px rgba(2,6,23,.14);
+    }
+    .sticky-inner .msg{
+      display:flex;
+      flex-direction:column;
+      gap: 2px;
+      min-width: 0;
+    }
+    .sticky-inner .msg b{ color: var(--ink); }
+    .sticky-inner .msg small{ color: rgba(51,65,85,.85); }
+
+    .btn{
+      border: none;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-weight: 900;
+      letter-spacing:.02em;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .18s ease, opacity .18s ease, background .18s ease;
+      white-space:nowrap;
+    }
+    .btn:active{ transform: translateY(0px); }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(249,115,22,.98), rgba(239,68,68,.98));
+      color: #fff;
+      box-shadow: 0 12px 26px rgba(239,68,68,.20);
+    }
+    .btn.primary:hover{ transform: translateY(-1px); box-shadow: 0 16px 34px rgba(239,68,68,.28); }
+    .btn.primary:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+      transform:none;
+      box-shadow:none;
+    }
+
+    /* Results */
+    .results{
+      display:none;
+      padding: 18px var(--pad) 26px;
+    }
+    .results.show{ display:block; }
+    .results h2{
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      color: var(--ink);
+    }
+
+    .result-box{
+      border-radius: 18px;
+      border: 1px solid rgba(15,23,42,.12);
+      padding: 18px;
+      box-shadow: 0 16px 40px rgba(2,6,23,.10);
+      background:#fff;
+    }
+    .result-top{
+      display:flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom: 10px;
+    }
+    .score{
+      display:inline-flex;
+      align-items:baseline;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      border: 1px solid rgba(15,23,42,.12);
+      background: rgba(2,6,23,.04);
+    }
+    .score strong{ font-size: 18px; }
+    .badge{
+      font-weight: 900;
+      letter-spacing:.05em;
+      text-transform: uppercase;
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,.12);
+      background: rgba(2,6,23,.04);
+    }
+    .badge.red{ background: rgba(239,68,68,.12); border-color: rgba(239,68,68,.22); color: #7F1D1D; }
+    .badge.orange{ background: rgba(249,115,22,.12); border-color: rgba(249,115,22,.22); color: #7C2D12; }
+    .badge.green{ background: rgba(16,185,129,.12); border-color: rgba(16,185,129,.22); color: #064E3B; }
+
+    .result-box h3{
+      margin: 6px 0 10px 0;
+      font-size: 16px;
+      color: var(--ink);
+      letter-spacing:-.01em;
+    }
+    .result-box p{
+      margin: 0 0 10px 0;
+      color: var(--sub);
+      line-height: 1.7;
+      font-size: 14.5px;
+    }
+    .next{
+      margin-top: 10px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px dashed rgba(15,23,42,.18);
+      background: rgba(2,6,23,.03);
+    }
+    .next b{ color: var(--ink); }
+
+    /* CTA */
+    .cta{
+      margin-top: 16px;
+      border-radius: 18px;
+      padding: 18px;
+      background:
+        radial-gradient(600px 240px at 15% 10%, rgba(56,189,248,.25), transparent 60%),
+        radial-gradient(600px 260px at 85% 15%, rgba(249,115,22,.25), transparent 60%),
+        linear-gradient(135deg, #071733 0%, #0B2A57 55%, #071733 100%);
+      color:#fff;
+      box-shadow: 0 18px 44px rgba(2,6,23,.18);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .cta h3{
+      margin:0 0 8px 0;
+      font-size: 16px;
+      letter-spacing:-.01em;
+    }
+    .cta p{
+      margin:0 0 12px 0;
+      color: rgba(255,255,255,.88);
+      font-size: 14px;
+      line-height:1.6;
+    }
+    .cta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
+      margin-top: 10px;
+    }
+    .wa{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: #22C55E;
+      color: #052e16;
+      font-weight: 900;
+      text-decoration:none;
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 12px 28px rgba(34,197,94,.18);
+      transition: transform .12s ease, box-shadow .18s ease;
+    }
+    .wa:hover{ transform: translateY(-1px); box-shadow: 0 16px 34px rgba(34,197,94,.22); }
+
+    .contact{
+      display:grid;
+      gap: 10px;
+      grid-template-columns: 1fr;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,.14);
+      color: rgba(255,255,255,.90);
+      font-size: 13.5px;
+    }
+    .contact a{
+      color: rgba(255,255,255,.92);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(255,255,255,.35);
+    }
+
+    /* Footer */
+    footer{
+      padding: 18px var(--pad) 26px;
+      color: rgba(255,255,255,.78);
+      text-align:center;
+      background: #070B14;
+      border-top: 1px solid rgba(255,255,255,.06);
+    }
+    footer b{ color:#fff; }
+
+    /* Responsive */
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: 1fr; }
+      :root{ --pad: 18px; }
+      .sticky{ padding: 0 var(--pad) 16px; }
+    }
+    @media (max-width: 520px){
+      .sticky-inner{ flex-direction:column; align-items:stretch; }
+      .btn{ width:100%; }
+      .q-actions{ flex-direction:column; }
+      .pill{ width:100%; }
+      .brand{ flex-direction:column; text-align:center; }
+      .brand-text{ align-items:center; }
+      .brand-logo{ height:54px; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{ scroll-behavior:auto !important; transition:none !important; }
+    }
+
+    /* --- Contacto directo --- */
+    .contact{margin: 18px 0 6px;}
+    .contact-card{
+      background: rgba(255,255,255,.75);
+      border: 1px solid rgba(15,23,42,.08);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: 0 12px 30px rgba(2,6,23,.06);
+      backdrop-filter: blur(10px);
+    }
+    .contact-head{margin-bottom: 12px;}
+    .contact-title{font-weight: 800; letter-spacing: -.02em; font-size: 14px; color: var(--ink);}
+    .contact-sub{margin-top: 4px; font-size: 13px; color: rgba(255,255,255,.88);}
+    .contact-card .contact-sub{color: rgba(51,65,85,.85);}
+    .contact-actions{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 10px;
+    }
+    .wa-btn{
+      display:flex; align-items:center; gap:10px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: #ffffff;
+      text-decoration:none;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .wa-btn:hover{transform: translateY(-1px); box-shadow: 0 10px 20px rgba(2,6,23,.08); border-color: rgba(15,23,42,.18);}
+    .wa-ico{
+      width: 34px; height: 34px;
+      display:grid; place-items:center;
+      border-radius: 12px;
+      background: rgba(34,197,94,.10);
+      border: 1px solid rgba(34,197,94,.25);
+      flex: 0 0 auto;
+    }
+    .wa-ico svg{width: 18px; height: 18px; fill: rgba(34,197,94,.95);}
+    .wa-txt{display:flex; flex-direction:column; line-height: 1.05;}
+    .wa-label{font-size: 11px; color: rgba(51,65,85,.80);}
+    .wa-num{font-weight: 800; font-size: 13px; color: var(--ink); letter-spacing: -.01em;}
+    .contact-meta{
+      margin-top: 12px;
+      display:flex; align-items:center; gap:10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(15,23,42,.14);
+    }
+    .email-label{
+      font-size: 11px;
+      color: rgba(51,65,85,.88);
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,.12);
+      background: rgba(15,23,42,.06);
+    }
+    a.email-link{
+      font-weight: 800;
+      color: var(--ink) !important;
+      text-decoration:none;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,23,42,.12);
+      background: rgba(255,255,255,.96);
+      box-shadow: 0 6px 18px rgba(2,6,23,.08);
+    }
+    .email-link:hover{border-color: rgba(15,23,42,.18); box-shadow: 0 10px 20px rgba(2,6,23,.06);}
+
+    @media (max-width: 840px){
+      .contact-actions{grid-template-columns: 1fr;}
+    }
+
+    .cta .contact a{color: rgba(255,255,255,.92); text-decoration: underline;}
+    .cta .contact a:hover{color:#fff;}
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div class="hero-inner">
+        <div class="brand">
+          <div class="brand-text">
+            <div class="brand-badge">HC CONSULTING</div>
+            <div class="tagline">Tu área de RR.HH. externa</div>
+          </div>
+        </div>
+
+        <div class="title">Diagnóstico 360 para PYMEs</div>
+        <div class="subtitle">
+          Respondé 10 preguntas y descubrí si tu gestión de RR.HH. está
+          <span class="highlight">generando caos o rentabilidad</span>.
+        </div>
+
+        <div aria-live="polite" class="progress">
+          <div class="progress-left">
+            <small>Progreso</small>
+            <strong><span id="answeredCount">0</span>/10 respondidas</strong>
+          </div>
+          <div aria-hidden="true" class="bar"><i id="progressBar"></i></div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="grid">
+        <div class="card intro-card">
+          <h2>⚡ En 2 minutos vas a tener claridad</h2>
+          <p>
+            Si tu empresa creció, lo que funcionaba con 10 personas ya no funciona con 30 o 50.
+            Este diagnóstico te ayuda a identificar riesgos, cuellos de botella y oportunidades de mejora
+            sin humo y sin teoría innecesaria.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="steps">
+            <div class="step">
+              <div class="dot">1</div>
+              <div>
+                <b>Contestá SÍ o NO</b>
+                <span>Se 100% honesto: es para vos, no para “quedar bien”.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="dot">2</div>
+              <div>
+                <b>Obtené tu resultado</b>
+                <span>Te mostramos un diagnóstico simple y accionable.</span>
+              </div>
+            </div>
+            <div class="step">
+              <div class="dot">3</div>
+              <div>
+                <b>Elegí el próximo paso</b>
+                <span>Si querés, coordinamos una reunión sin cargo para armar un plan.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="q-head">
+      <div>
+        <h2>Las 10 preguntas clave</h2>
+        <p>Marcá una opción en cada tarjeta.</p>
+      </div>
+      <p><b>Tip:</b> podés volver y cambiar respuestas cuando quieras.</p>
+    </div>
+
+    <section class="contact">
+      <div class="contact-card">
+        <div class="contact-head">
+          <div class="contact-title">Contacto directo</div>
+          <div class="contact-sub">¿Querés coordinar una cita? Escribinos por WhatsApp o por email.</div>
+        </div>
+
+        <div class="contact-actions">
+          <a class="wa-btn" href="https://wa.me/5491121793514?text=Hola%2C%20quisiera%20agendar%20una%20cita%20de%20diagn%C3%B3stico%20sin%20cargo%20con%20HC%20Consulting.%20%C2%BFQu%C3%A9%20disponibilidad%20tienen%3F" rel="noopener" target="_blank">
+            <span class="wa-ico">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 32 32">
+                <path d="M19.11 17.42c-.21-.11-1.23-.61-1.42-.68-.19-.07-.33-.11-.47.11-.14.21-.54.68-.66.82-.12.14-.24.16-.45.05-.21-.11-.88-.32-1.67-1.02-.62-.55-1.04-1.23-1.16-1.44-.12-.21-.01-.32.09-.43.09-.09.21-.24.31-.36.1-.12.14-.21.21-.35.07-.14.03-.27-.02-.38-.05-.11-.47-1.13-.65-1.55-.17-.41-.35-.36-.47-.36h-.4c-.14 0-.36.05-.55.27-.19.21-.72.7-.72 1.71 0 1.01.74 1.99.84 2.13.1.14 1.46 2.22 3.54 3.12.49.21.88.34 1.18.44.5.16.96.14 1.32.09.4-.06 1.23-.5 1.4-.99.17-.49.17-.91.12-.99-.05-.08-.19-.13-.4-.24z"></path>
+                <path d="M16 3C8.82 3 3 8.82 3 16c0 2.29.6 4.52 1.74 6.49L3 29l6.73-1.75A12.94 12.94 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.56c-2.06 0-4.08-.55-5.84-1.6l-.42-.25-3.99 1.04 1.06-3.88-.27-.44A10.96 10.96 0 1 1 16 26.56z"></path>
+              </svg>
+            </span>
+            <span class="wa-txt">
+              <span class="wa-label">WhatsApp</span>
+              <span class="wa-num">15-2179-3514</span>
+            </span>
+          </a>
+
+          <a class="wa-btn" href="https://wa.me/5491132193747?text=Hola%2C%20quisiera%20agendar%20una%20cita%20de%20diagn%C3%B3stico%20sin%20cargo%20con%20HC%20Consulting.%20%C2%BFQu%C3%A9%20disponibilidad%20tienen%3F" rel="noopener" target="_blank">
+            <span class="wa-ico">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 32 32">
+                <path d="M19.11 17.42c-.21-.11-1.23-.61-1.42-.68-.19-.07-.33-.11-.47.11-.14.21-.54.68-.66.82-.12.14-.24.16-.45.05-.21-.11-.88-.32-1.67-1.02-.62-.55-1.04-1.23-1.16-1.44-.12-.21-.01-.32.09-.43.09-.09.21-.24.31-.36.1-.12.14-.21.21-.35.07-.14.03-.27-.02-.38-.05-.11-.47-1.13-.65-1.55-.17-.41-.35-.36-.47-.36h-.4c-.14 0-.36.05-.55.27-.19.21-.72.7-.72 1.71 0 1.01.74 1.99.84 2.13.1.14 1.46 2.22 3.54 3.12.49.21.88.34 1.18.44.5.16.96.14 1.32.09.4-.06 1.23-.5 1.4-.99.17-.49.17-.91.12-.99-.05-.08-.19-.13-.4-.24z"></path>
+                <path d="M16 3C8.82 3 3 8.82 3 16c0 2.29.6 4.52 1.74 6.49L3 29l6.73-1.75A12.94 12.94 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.56c-2.06 0-4.08-.55-5.84-1.6l-.42-.25-3.99 1.04 1.06-3.88-.27-.44A10.96 10.96 0 1 1 16 26.56z"></path>
+              </svg>
+            </span>
+            <span class="wa-txt">
+              <span class="wa-label">WhatsApp</span>
+              <span class="wa-num">15-3219-3747</span>
+            </span>
+          </a>
+
+          <a class="wa-btn" href="https://wa.me/5491121587463?text=Hola%2C%20quisiera%20agendar%20una%20cita%20de%20diagn%C3%B3stico%20sin%20cargo%20con%20HC%20Consulting.%20%C2%BFQu%C3%A9%20disponibilidad%20tienen%3F" rel="noopener" target="_blank">
+            <span class="wa-ico">
+              <svg aria-hidden="true" focusable="false" viewBox="0 0 32 32">
+                <path d="M19.11 17.42c-.21-.11-1.23-.61-1.42-.68-.19-.07-.33-.11-.47.11-.14.21-.54.68-.66.82-.12.14-.24.16-.45.05-.21-.11-.88-.32-1.67-1.02-.62-.55-1.04-1.23-1.16-1.44-.12-.21-.01-.32.09-.43.09-.09.21-.24.31-.36.10-.12.14-.21.21-.35.07-.14.03-.27-.02-.38-.05-.11-.47-1.13-.65-1.55-.17-.41-.35-.36-.47-.36h-.4c-.14 0-.36.05-.55.27-.19.21-.72.7-.72 1.71 0 1.01.74 1.99.84 2.13.10.14 1.46 2.22 3.54 3.12.49.21.88.34 1.18.44.50.16.96.14 1.32.09.40-.06 1.23-.50 1.40-.99.17-.49.17-.91.12-.99-.05-.08-.19-.13-.40-.24z"></path>
+                <path d="M16 3C8.82 3 3 8.82 3 16c0 2.29.60 4.52 1.74 6.49L3 29l6.73-1.75A12.94 12.94 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.56c-2.06 0-4.08-.55-5.84-1.60l-.42-.25-3.99 1.04 1.06-3.88-.27-.44A10.96 10.96 0 1 1 16 26.56z"></path>
+              </svg>
+            </span>
+            <span class="wa-txt">
+              <span class="wa-label">WhatsApp</span>
+              <span class="wa-num">15-2158-7463</span>
+            </span>
+          </a>
+        </div>
+
+        <div class="contact-meta">
+          <span class="email-label">Email</span>
+          <a class="email-link" href="mailto:hcconsulting@gmail.com?subject=Consulta%20-%20Cita%20HC%20Consulting">hcconsulting@gmail.com</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="questions" id="questions">
+      <!-- PREGUNTAS (dejé exactamente el esquema original: 10) -->
+      <article class="q" data-question="1">
+        <div class="q-top">
+          <div class="q-num">1</div>
+          <div class="q-meta">
+            <div class="q-cat">Gestión administrativa / legal</div>
+            <p class="q-text">¿Tus legajos, contratos y documentación laboral están desordenados, o temés que una inspección (Ministerio de Trabajo/AFIP) te encuentre incumplimientos graves?</p>
+          </div>
+        </div>
+        <div aria-label="Pregunta 1" class="q-actions" role="group">
+          <button class="pill yes" onclick="answer(1,true)" type="button">Sí</button>
+          <button class="pill no" onclick="answer(1,false)" type="button">No</button>
+        </div>
+      </article>
+
+      <article class="q" data-question="2">
+        <div class="q-top">
+          <div class="q-num">2</div>
+          <div class="q-meta">
+            <div class="q-cat">Rotación y costos</div>
+            <p class="q-text">¿La rotación o el ausentismo te generan costos ocultos importantes, o sentís que el tiempo que perdés cubriendo ausencias es excesivo?</p>
+          </div>
+        </div>
+        <div aria-label="Pregunta 2" class="q-actions" role="group">
+          <button class="pill yes" onclick="answer(2,true)" type="button">Sí</button>
+          <button class="pill no" onclick="answer(2,false)" type="button">No</button>
+        </div>
+      </article>
+
+      <article class="q" data-question="3">
+        <div class="q-top">
+          <div class="q-num">3</div>
+          <div class="q-meta">
+            <div class="q-cat">Procesos</div>
+            <p class="q-text">¿No tenés procesos claros de trabajo y cada empleado termina haciendo las cosas “a su manera” o improvisando su rol?</p>
+          </div>
+        </div>
+        <div aria-label="Pregunta 3" class="q-actions" role="group">
+          <button class="pill yes" onclick="answer(3,true)" type="button">Sí</button>
+          <button class="pill no" onclick="answer(3,false)" type="button">No</button>
+        </div>
+      </article>
+
+      <article class="q" data-question="4">
+        <div class="q-top">
+          <div class="q-num">4</div>
+          <div class="q-meta">
+            <div class="q-cat">Reclutamiento</div>
+            <p class="q-text">¿El proceso de búsqueda de personal es lento, y muchas veces el candidato que terminás incorporando resulta ser inadecuado a los pocos meses?</p>
+          </div>
+        </div>
+        <div aria-label="Pregunta 4" class="q-actions" role="group">
+          <button class="pill yes" onclick="answer(4,true)" type="button">Sí</button>
+          <button class="pill no" onclick="answer(4,false)" type="button">No</button>
+        </div>
+      </article>
+
+      <article class="q" data-question="5">
+        <div class="q-top">
+          <div class="q-num">5</div>
+          <div class="q-meta">
+            <div class="q-cat">Gestión de conflictos</div>
+            <p class="q-text">¿Perdés tiempo valioso resolviendo conflictos internos, discusiones entre empleados o manejando quejas de manera reactiva?</p>
+          </div>
+        </div>
+        <div aria-label="Pregunta 5" class="q-actions" role="group">
+          <button class="pill yes" onclick="answer(5,true)" type="button">Sí</button>
+          <button class="pill no" onclick="answer(5,false)" type="button">No</button>
+        </div>
+      </article>
+
+      <article class="q" data-question="6">
+        <div class="q-top">
+          <div class="q-num">6</div>
+          <div class="q-meta">
+            <div class="q-cat">Mandos medios</div>
+            <p class="q-text">¿Tus supervisores o mandos medios no saben dar feedback efectivo o gestionar equipos, y nunca les ofreciste una capacitación formal para ello?</p>
+          </div>
+        </div>
+        <div aria-label="Pregunta 6" class="q-actions" role="group">
+          <button class="pill yes" onclick="answer(6,true)" type="button">Sí</button>
+          <button class="pill no" onclick="answer(6,false)" type="button">No</button>
+        </div>
+      </article>
+
+      <article class="q" data-question="7">
+        <div class="q-top">
+          <div class="q-num">7</div>
+          <div class="q-meta">
+            <div class="q-cat">Estructura organizacional</div>
+            <p class="q-text">¿El organigrama y la definición de roles están solo en tu cabeza, lo que impide que la empresa pueda escalar sin depender totalmente de vos?</p>
+          </div>
+        </div>
+        <div aria-label="Pregunta 7" class="q-actions" role="group">
+          <button class="pill yes" onclick="answer(7,true)" type="button">Sí</button>
+          <button class="pill no" onclick="answer(7,false)" type="button">No</button>
+        </div>
+      </article>
+
+      <article class="q" data-question="8">
+        <div class="q-top">
+          <div class="q-num">8</div>
+          <div class="q-meta">
+            <div class="q-cat">Costo vs. inversión</div>
+            <p class="q-text">¿Necesitás profesionalizar, pero te asusta el costo de contratar un Gerente de RR.HH. full-time (cuyo sueldo puede estar entre $4M y $7M + cargas sociales)?</p>
+          </div>
+        </div>
+        <div aria-label="Pregunta 8" class="q-actions" role="group">
+          <button class="pill yes" onclick="answer(8,true)" type="button">Sí</button>
+          <button class="pill no" onclick="answer(8,false)" type="button">No</button>
+        </div>
+      </article>
+
+      <article class="q" data-question="9">
+        <div class="q-top">
+          <div class="q-num">9</div>
+          <div class="q-meta">
+            <div class="q-cat">Onboarding</div>
+            <p class="q-text">¿Tenés un proceso formal de onboarding (inducción) o los empleados nuevos entran y el primer día es confuso y caótico?</p>
+          </div>
+        </div>
+        <div aria-label="Pregunta 9" class="q-actions" role="group">
+          <button class="pill yes" onclick="answer(9,true)" type="button">Sí</button>
+          <button class="pill no" onclick="answer(9,false)" type="button">No</button>
+        </div>
+      </article>
+
+      <article class="q" data-question="10">
+        <div class="q-top">
+          <div class="q-num">10</div>
+          <div class="q-meta">
+            <div class="q-cat">Soporte experto</div>
+            <p class="q-text">¿Cuando surge un conflicto laboral complejo (como un despido con causa o una negociación gremial), no tenés un experto con 20 años de experiencia para consultar de forma inmediata?</p>
+          </div>
+        </div>
+        <div aria-label="Pregunta 10" class="q-actions" role="group">
+          <button class="pill yes" onclick="answer(10,true)" type="button">Sí</button>
+          <button class="pill no" onclick="answer(10,false)" type="button">No</button>
+        </div>
+      </article>
+    </section>
+
+    <div aria-live="polite" class="sticky">
+      <div class="sticky-inner">
+        <div class="msg">
+          <b>Cuando termines, mirá tu resultado</b>
+          <small id="helperText">Respondé todas las preguntas para habilitar el botón.</small>
+        </div>
+        <button class="btn primary" disabled id="btnShowResults" onclick="showResults()" type="button">
+          Ver mis resultados
+        </button>
+      </div>
+    </div>
+
+    <section class="results" id="resultsSection">
+      <h2>📊 Tus resultados</h2>
+      <div id="resultContent"></div>
+
+      <div aria-label="Llamado a la acción" class="cta" role="region">
+        <h3>¿Querés coordinar una cita de diagnóstico (sin cargo)?</h3>
+        <p>En una reunión breve (20–25 min) revisamos tus respuestas, detectamos riesgos y oportunidades, y te orientamos sobre los próximos pasos para ordenar RR.HH. y relaciones laborales en tu PYME. Sin compromiso.</p>
+
+        <div class="cta-row">
+          <a class="wa" href="https://wa.me/5491521793514?text=Hola%21%20Hice%20el%20Diagn%C3%B3stico%20360%20y%20quisiera%20coordinar%20una%20cita%20de%20diagn%C3%B3stico%20para%20mi%20PYME.%20%C2%BFQu%C3%A9%20disponibilidad%20tienen%20esta%20semana%3F" rel="noopener" target="_blank">📱 WhatsApp 15-2179-3514</a>
+          <a class="wa" href="https://wa.me/5491532193747?text=Hola%21%20Hice%20el%20Diagn%C3%B3stico%20360%20y%20quisiera%20coordinar%20una%20cita%20de%20diagn%C3%B3stico%20para%20mi%20PYME.%20%C2%BFQu%C3%A9%20disponibilidad%20tienen%20esta%20semana%3F" rel="noopener" target="_blank">📱 WhatsApp 15-3219-3747</a>
+          <a class="wa" href="https://wa.me/5491521587463?text=Hola%21%20Hice%20el%20Diagn%C3%B3stico%20360%20y%20quisiera%20coordinar%20una%20cita%20de%20diagn%C3%B3stico%20para%20mi%20PYME.%20%C2%BFQu%C3%A9%20disponibilidad%20tienen%20esta%20semana%3F" rel="noopener" target="_blank">📱 WhatsApp 15-2158-7463</a>
+        </div>
+
+        <div class="contact" style="margin-top:12px;">
+          <div>Email: <a class="email-link" href="mailto:hcconsulting@gmail.com?subject=Consulta%20-%20Cita%20HC%20Consulting">hcconsulting@gmail.com</a></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <b>HC CONSULTING</b><br/>
+      <span>Tu área de RR.HH. externa</span>
+    </footer>
+  </main>
+
+  <script>
+    const totalQuestions = 10;
+    const answers = {};
+
+    const answeredCountEl = document.getElementById('answeredCount');
+    const progressBarEl = document.getElementById('progressBar');
+    const btnResults = document.getElementById('btnShowResults');
+    const helperText = document.getElementById('helperText');
+
+    function answer(questionNumber, isYes) {
+      answers[questionNumber] = isYes;
+
+      const q = document.querySelector(`[data-question="${questionNumber}"]`);
+      const buttons = q.querySelectorAll('button.pill');
+
+      buttons.forEach(b => b.classList.remove('selected-yes','selected-no'));
+
+      if (isYes) buttons[0].classList.add('selected-yes');
+      else buttons[1].classList.add('selected-no');
+
+      q.classList.add('answered');
+      updateProgress();
+    }
+
+    function updateProgress(){
+      const answered = Object.keys(answers).length;
+      answeredCountEl.textContent = answered;
+
+      const pct = Math.round((answered / totalQuestions) * 100);
+      progressBarEl.style.width = pct + "%";
+
+      if (answered === totalQuestions){
+        btnResults.disabled = false;
+        helperText.textContent = "Listo ✅ Podés ver tu resultado.";
+      } else {
+        btnResults.disabled = true;
+        helperText.textContent = `Te faltan ${totalQuestions - answered} para habilitar el botón.`;
+      }
+    }
+
+    function calculateScore() {
+      let score = 0;
+      for (const k in answers) if (answers[k] === true) score++;
+      return score;
+    }
+
+    function showResults(){
+      if (Object.keys(answers).length !== totalQuestions) return;
+
+      const score = calculateScore();
+      const resultContent = document.getElementById('resultContent');
+      const resultsSection = document.getElementById('resultsSection');
+
+      let badgeClass = "green";
+      let headline = "Bajo riesgo: ¡felicitaciones!";
+      let desc1 = "Tenés una base sólida de profesionalización, pero siempre hay oportunidades para optimizar y escalar.";
+      let desc2 = "El enfoque ideal es la mejora continua: retención de talento, eficiencia operativa y procesos.";
+      let next = "Si te interesa, podemos enfocarnos en proyectos específicos (ej. reclutamiento, onboarding, estructura, KPIs) con servicios modulares.";
+
+      if (score >= 8){
+        badgeClass = "red";
+        headline = "Alerta roja: estás operando en crisis";
+        desc1 = "Tu gestión está demasiado “casera” y podrías estar perdiendo dinero y corriendo riesgos legales graves.";
+        desc2 = "La prioridad es orden + rentabilidad, con soluciones concretas implementables ya.";
+        next = "Agendá una reunión de diagnóstico sin cargo para armar un plan de quick wins (resultados rápidos) y bajar riesgos.";
+      } else if (score >= 4){
+        badgeClass = "orange";
+        headline = "Riesgo moderado: cuellos de botella al crecer";
+        desc1 = "Controlaste lo urgente, pero procesos, mandos medios y estructura pueden estar frenando el crecimiento.";
+        desc2 = "Necesitás un método probado y foco. Los problemas no se resuelven solos.";
+        next = "Hablemos para definir dónde conviene intervenir primero y qué implementación te da más retorno.";
+      }
+
+      resultContent.innerHTML = `
+        <div class="result-box">
+          <div class="result-top">
+            <div class="score"><strong>${score}/10</strong> <span>Puntos</span></div>
+            <div class="badge ${badgeClass}">${badgeClass === "red" ? "Alerta" : badgeClass === "orange" ? "Atención" : "Ok"}</div>
+          </div>
+
+          <h3>${headline}</h3>
+          <p>${desc1}</p>
+          <p><b>${desc2}</b></p>
+
+          <div class="next">
+            <b>Próximo paso:</b>
+            <div style="margin-top:6px; color: rgba(51,65,85,.92); line-height:1.65;">
+              ${next}
+            </div>
+          </div>
+        </div>
+      `;
+
+      resultsSection.classList.add('show');
+      resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Init
+    updateProgress();
+  </script>
+</body>
+</html>
